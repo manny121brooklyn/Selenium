@@ -43,10 +43,13 @@ def test_google_site(browser):
         browser.get("https://www.google.com")
         browser.find_element(By.NAME, "q").send_keys("jenkins")
         element = browser.find_element(By.NAME, "btnK")
-        element.click()
+        browser.execute_script("arguments[0].click()", element)
+        # element.click()
         assert "Google" == browser.title
 
     except Exception as e:
         print(e)
     finally:
+        browser.get_screenshot_as_file("C:/reports/google.gif")
+        # browser.save_screenshot("google1.gif")
         browser.close()
